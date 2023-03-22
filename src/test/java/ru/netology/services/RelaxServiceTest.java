@@ -1,33 +1,16 @@
 package ru.netology.services;
+
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 public class RelaxServiceTest {
 
-    @Test
-    public void shouldRelaxMonths1() {
-        int expected = 3;
+    @ParameterizedTest
+    @CsvFileSource(files="src/test/resources/relax.csv")
+    public void shouldRelaxMonths1(int expected, int income, int expenses, int threshold) {
 
         RelaxService service = new RelaxService();
-        int income = 10_000;
-        int expenses = 3_000;
-        int threshold = 20_000;
-
-
-        int actual = service.calculate(income, expenses, threshold);
-
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldRelaxMonths2() {
-        int expected = 2;
-
-        RelaxService service = new RelaxService();
-        int income = 100_000;
-        int expenses = 60_000;
-        int threshold = 150_000;
-
 
         int actual = service.calculate(income, expenses, threshold);
 
